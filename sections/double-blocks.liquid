@@ -1,0 +1,58 @@
+{% schema %}
+{
+  "name": "Double Section Slider",
+  "blocks":
+  [
+    {
+      "type": "pic-1",
+      "name": "3/4 Slider (Left)",
+      "settings": [
+        {
+          "id": "hero_banner",
+          "type": "image_picker",
+          "label": "3/4 Image"
+        },
+        {
+          "id": "hero_link",
+          "type": "url",
+          "label": "Hero Link"
+        }
+      ]
+    },
+    {
+      "type": "pic-2",
+      "name": "1/4 Slider (Right)",
+      "settings": [
+        {
+          "id": "weekly_banner",
+          "type": "image_picker",
+          "label": "1/4 Image"
+        },
+        {
+          "id": "weekly_link",
+          "type": "url",
+          "label": "Weekly Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "category": "Advanced content",
+      "name": "Double Block Slider"
+    }
+  ]
+}
+{% endschema %}
+
+{% for block in section.blocks %}
+        {% if block.type == 'pic-1' %}
+        <img src="{{ block.settings.weekly_banner | img_url: '2048x' }}">       
+     {% endif %}
+{% endfor %}
+
+{% for block in section.blocks %}
+      {% if block.type == 'pic-2' %}
+        <img src="{{ block.settings.weekly_banner | img_url: '750x' }}">
+      {% endif %}
+{% endfor %}
