@@ -1,0 +1,81 @@
+{% schema %}
+  {
+    "name": "Multi Blocks",
+    "blocks":[
+      {
+        "type": "title",
+        "name": "heading",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "description",
+        "name": "descriptions",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "description",
+            "label": "your description"
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "images",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "imagePic",
+            "label": "your image"
+          }
+        ]
+      }
+    ], 
+    "presets": [
+      {
+        "category": "Advanced content",
+        "name": "Multi Blocks"
+      }
+    ]
+  }
+{% endschema %}
+
+{% for block in section.blocks %}
+
+<div class="grid-format">
+    {% case block.type %}
+        {% when 'image' %}
+        {% include 'snippet_custom-image' %}
+        {% endcase %}
+  </div>
+
+
+<div class = "text-formatter">
+{% if block.type == 'title' %}
+<h2>{{block.settings.title}}</h2>
+{% elsif block.type == 'description' %}
+<h5>{{block.settings.description}}</h5>
+{% endif %} 
+</div>
+{% endfor %}
+
+{% style %}
+      .grid-format {
+        display: absolute;
+        max-width: 900px;
+        margin: 0 auto;
+        justify-content: center;
+      }
+    
+          .text-formatter h2, h5 {
+             width: 1000px;
+             margin: auto;
+
+          }
+     
+{% endstyle %}
